@@ -1,0 +1,392 @@
+/* Panton Font Faces */
+@font-face {
+    font-family: 'Panton';
+    src: url('./fonts/Panton-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Panton';
+    src: url('./fonts/Panton-Italic.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Panton';
+    src: url('./fonts/Panton-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Panton';
+    src: url('./fonts/Panton-LightItalic.otf') format('opentype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Panton';
+    src: url('./fonts/Panton-SemiBold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Panton';
+    src: url('./fonts/Panton-SemiBoldItalic.otf') format('opentype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Panton';
+    src: url('./fonts/Panton-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Panton';
+    src: url('./fonts/Panton-BoldItalic.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Panton';
+    src: url('./fonts/Panton-Black.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Panton';
+    src: url('./fonts/Panton-BlackItalic.otf') format('opentype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Panton', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.map-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.building-map {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-wrapper {
+    position: relative;
+    max-width: 100%;
+    max-height: 100vh;
+    width: fit-content;
+    height: fit-content;
+}
+
+.building-image {
+    max-width: 100%;
+    max-height: 100vh;
+    width: auto;
+    height: auto;
+    display: block;
+}
+
+
+.info-card {
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.card-header {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+/* Debug mode - add class "debug" to body to see clickable areas */
+body.debug .card-header {
+    background: rgba(255, 0, 0, 0.3) !important;
+    outline: 2px solid red !important;
+    border-radius: 4px;
+}
+
+body.debug .info-card::before {
+    content: attr(data-location);
+    position: absolute;
+    top: -20px;
+    left: 0;
+    background: red;
+    color: white;
+    padding: 2px 6px;
+    font-size: 11px;
+    border-radius: 3px;
+    z-index: 1000;
+}
+
+/* Optional: Add a subtle highlight on hover to show it's clickable */
+.card-header:hover {
+    background: rgba(255, 255, 255, 0.1);
+    outline: 2px solid rgba(102, 126, 234, 0.5);
+    border-radius: 8px;
+}
+
+/* Hide the images and text since they're already in the background */
+.card-image,
+.card-text,
+.card-arrow {
+    display: none;
+}
+
+.card-popup {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    margin-top: 5px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    padding: 0;
+    min-width: 280px;
+    max-width: 600px;
+    width: max-content;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+/* Arrow pointing up to the card */
+.card-popup::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+}
+
+.info-card.active .card-popup {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.info-card.active .card-header {
+    background: rgba(102, 126, 234, 0.2);
+    outline: 2px solid rgba(102, 126, 234, 0.8);
+    border-radius: 8px;
+}
+
+.popup-content {
+    padding: 20px;
+}
+
+.popup-content.popup-image {
+    padding: 0;
+}
+
+.popup-image-content {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+.popup-content h4 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 8px;
+}
+
+.popup-content p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.popup-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.popup-content ul li {
+    color: #555;
+    font-size: 14px;
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+}
+
+.popup-content ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+}
+
+/* Ensure popups don't go off screen on smaller displays */
+@media (max-width: 1024px) {
+    .card-popup {
+        min-width: 220px;
+        max-width: 280px;
+        font-size: 14px;
+    }
+
+    .popup-content {
+        padding: 15px;
+    }
+
+    .popup-content h4 {
+        font-size: 16px;
+    }
+
+    .popup-content p {
+        font-size: 13px;
+    }
+
+    .popup-content ul li {
+        font-size: 12px;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 768px) {
+    .card-popup {
+        min-width: 200px;
+        max-width: 250px;
+    }
+
+    .popup-content {
+        padding: 12px;
+    }
+
+    .popup-content h4 {
+        font-size: 14px;
+    }
+}
+
+/* Full-screen modal styles */
+.fullscreen-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.fullscreen-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-image {
+    max-width: 95%;
+    max-height: 95%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 50px;
+    color: white;
+    cursor: pointer;
+    z-index: 10000;
+    transition: color 0.3s ease;
+    user-select: none;
+}
+
+.modal-close:hover {
+    color: #667eea;
+}
+
+/* Back button styles */
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(102, 126, 234, 0.95);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-20px);
+}
+
+.back-button.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.back-button:hover {
+    background: rgba(118, 75, 162, 0.95);
+    transform: translateX(0) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.back-button svg {
+    width: 24px;
+    height: 24px;
+}
+
