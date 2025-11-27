@@ -46,9 +46,8 @@ infoCards.forEach(card => {
                     // Show cards that should be visible on this specific image
                     infoCards.forEach(c => {
                         const visibleOn = c.getAttribute('data-visible-on');
-                        // Check for exact match OR if it's a front card return button and we're on any Front card image
-                        if (visibleOn === newImageSrc ||
-                            (c.getAttribute('data-location') === 'front-card1-return' && newImageSrc.startsWith('Front card'))) {
+                        // Check for exact match (this handles all return buttons now)
+                        if (visibleOn === newImageSrc) {
                             c.style.display = '';
                         }
                     });
