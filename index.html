@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Interactive Building Map</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -10,138 +12,52 @@
     <div class="map-container">
         <div class="building-map">
             <div class="image-wrapper">
-                <img src="Frame 1.png" alt="Building Map" class="building-image" id="main-image">
+                <img src="Main screen front.png" alt="Building Map" class="building-image" id="main-image">
 
                 <!-- Back/Home button (hidden by default) -->
                 <div class="back-button" id="back-button">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M19 12H5M12 19l-7-7 7-7"/>
                     </svg>
-                    <span>Terug</span>
                 </div>
 
-                <!-- Card 1 - Invisible clickable zone (Switches to Frame 3) -->
-            <div class="info-card image-switch-card" data-location="card1" data-switch-image="Frame 3.png" style="top: 5%; left: 6%; width: 11%; height: 29%;">
+                <!-- Card 1 - Invisible clickable zone (Switches to Front card 1) -->
+            <div class="info-card image-switch-card" data-location="card1" data-switch-image="Front card 1.png" style="top: 5.5%; left: 17%; width: 11.5%; height: 29%;">
                 <div class="card-header"></div>
             </div>
 
-            <!-- Card 2 - Invisible clickable zone -->
-            <div class="info-card" data-location="card2" style="top: 5%; left: 19%; width: 11%; height: 29%;">
-                <div class="card-header"></div>
-                <div class="card-popup">
-                    <div class="popup-content">
-                        <h4>Uitbreiding Locatie</h4>
-                        <p>Vergroting van de bestaande kantoorlocatie voor meer werkplekken.</p>
-                        <ul>
-                            <li>500 extra werkplekken</li>
-                            <li>Moderne faciliteiten</li>
-                            <li>Flexibele werkruimtes</li>
-                            <li>Groene buitenruimte</li>
-                        </ul>
-                    </div>
+                <!-- Card 1 - Invisible clickable zone (Switches to Front card 1) -->
+                <div class="info-card image-switch-card" data-location="card2" data-switch-image="Front card 2.png" style="top: 5.5%; left: 31%; width: 11.5%; height: 29%;">
+                    <div class="card-header"></div>
                 </div>
-            </div>
 
-            <!-- Card 3 - Invisible clickable zone -->
-            <div class="info-card" data-location="card3" style="top: 5%; left: 32.5%; width: 11%; height: 29%;">
-                <div class="card-header"></div>
-                <div class="card-popup">
-                    <div class="popup-content">
-                        <h4>Integratie met Omgeving</h4>
-                        <p>Het gebouw is ontworpen om harmonieus op te gaan in de natuurlijke omgeving.</p>
-                        <ul>
-                            <li>Groene gevels</li>
-                            <li>Natuurlijke materialen</li>
-                            <li>Landschapsarchitectuur</li>
-                            <li>Biodiversiteit</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 4 - Invisible clickable zone -->
-            <div class="info-card" data-location="card4" style="top: 5%; left: 45.7%; width: 11%; height: 29%;">
-                <div class="card-header"></div>
-                <div class="card-popup">
-                    <div class="popup-content">
-                        <h4>Veiligheidssysteem</h4>
-                        <p>Modern veiligheidssysteem voor optimale beveiliging.</p>
-                        <ul>
-                            <li>24/7 monitoring</li>
-                            <li>Toegangscontrole</li>
-                            <li>Calamiteitenplan</li>
-                            <li>Nooduitgangen</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 5 - Invisible clickable zone -->
-            <div class="info-card" data-location="card5" style="top: 5%; left: 59.2%; width: 11%; height: 29%;">
-                <div class="card-header"></div>
-                <div class="card-popup">
-                    <div class="popup-content">
-                        <h4>Zonnepanelen</h4>
-                        <p>Uitgebreid zonnepanelensysteem voorziet in alle energiebehoefte.</p>
-                        <ul>
-                            <li>1000+ zonnepanelen</li>
-                            <li>Volledig zelfvoorzienend</li>
-                            <li>Energieopslag</li>
-                            <li>CO2 neutraal</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 6 - Invisible clickable zone -->
-            <div class="info-card" data-location="card6" style="top: 5%; left: 72.5%; width: 11%; height: 29%;">
-                <div class="card-header"></div>
-                <div class="card-popup">
-                    <div class="popup-content">
-                        <h4>Innovatie & Duurzaamheid</h4>
-                        <p>Pionier in energieneutrale bedrijfspanden.</p>
-                        <ul>
-                            <li>Toonaangevend ontwerp</li>
-                            <li>Smart building technologie</li>
-                            <li>Circulaire economie</li>
-                            <li>Toekomstbestendig</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 7 - Invisible clickable zone -->
-            <div class="info-card" data-location="card7" style="top: 5%; left: 86%; width: 11%; height: 29%;">
-                <div class="card-header"></div>
-                <div class="card-popup">
-                    <div class="popup-content">
-                        <h4>Meer Informatie</h4>
-                        <p>Aanvullende details over het project.</p>
-                        <ul>
-                            <li>Projectduur: 2023-2025</li>
-                            <li>Architectenbureau: XYZ</li>
-                            <li>Oppervlakte: 5000m²</li>
-                            <li>Opening: Q1 2026</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 8 - Bottom clickable zone (Switches to Picture back) -->
-            <div class="info-card image-switch-card" data-location="card8" data-switch-image="Picture back.jpg" style="top: 90%; left: 52%; width: 3%; height: 5.5%;">
-                <div class="card-header"></div>
-            </div>
-
-            </div>
+           <!-- Card 1 - Invisible clickable zone (Switches to Front card 1) -->
+           <div class="info-card image-switch-card" data-location="card3" data-switch-image="Front card 3.png" style="top: 5.5%; left: 44%; width: 11.5%; height: 29%;">
+            <div class="card-header"></div>
         </div>
-    </div>
 
-    <!-- Full-screen image modal -->
-    <div id="fullscreen-modal" class="fullscreen-modal">
-        <div class="modal-close">&times;</div>
-        <img id="modal-image" src="" alt="Full Screen View" class="modal-image">
-    </div>
+                  <!-- Card 1 - Invisible clickable zone (Switches to Front card 1) -->
+                  <div class="info-card image-switch-card" data-location="card4" data-switch-image="Front card 4.png" style="top: 5.5%; left: 58%; width: 11.5%; height: 29%;">
+                    <div class="card-header"></div>
+                </div>
+            
+                                  <!-- Card 1 - Invisible clickable zone (Switches to Front card 1) -->
+                                  <div class="info-card image-switch-card" data-location="card5" data-switch-image="Front card 5.png" style="top: 5.5%; left: 71%; width: 11.5%; height: 29%;">
+                                    <div class="card-header"></div>
+                                </div>
+                        
+        
 
+
+            <!-- Card 8 - Bottom clickable zone (Switches to Main screen back) -->
+            <div class="info-card image-switch-card" data-location="card8" data-switch-image="Main screen back.png" style="top: 85%; left: 48.5%; width: 3%; height: 1;">
+                <div class="card-header"></div>
+            </div>
+
+            <!-- Front Card 1 Return - Clickable zone (only visible on Front card 1.png) -->
+            <div class="info-card image-switch-card" data-location="front-card1-return" data-switch-image="Main screen front.png" data-visible-on="Front card 1.png" style="top: 36%; left: 53%; width:2.5%; height: 7%; display: none;">
+                <div class="card-header"></div>
+            </div>5
     <script src="script.js"></script>
 </body>
 </html>

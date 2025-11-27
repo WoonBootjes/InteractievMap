@@ -7,7 +7,7 @@ const mainImage = document.getElementById('main-image');
 const backButton = document.getElementById('back-button');
 
 // Store the original image source
-const originalImageSrc = 'Frame 1.png';
+const originalImageSrc = 'Main screen front.png';
 let currentImageSrc = originalImageSrc;
 
 // Add click event listeners to each card
@@ -23,13 +23,36 @@ infoCards.forEach(card => {
             if (newImageSrc) {
                 mainImage.src = newImageSrc;
                 currentImageSrc = newImageSrc;
-                backButton.classList.add('visible');
-                // Hide all other clickable cards when viewing detail image
-                infoCards.forEach(c => {
-                    if (!c.classList.contains('image-switch-card')) {
-                        c.style.display = 'none';
-                    }
-                });
+
+                // Check if we're returning to the main screen
+                if (newImageSrc === originalImageSrc) {
+                    // Return to main navigation - show all cards and hide back button
+                    backButton.classList.remove('visible');
+                    infoCards.forEach(c => {
+                        c.style.display = '';
+                    });
+                } else {
+                    // Going to a detail image - hide cards and show back button
+                    backButton.classList.add('visible');
+                    // Hide all other clickable cards when viewing detail image
+                    infoCards.forEach(c => {
+                        if (!c.classList.contains('image-switch-card')) {
+                            c.style.display = 'none';
+                        } else {
+                            // Hide image-switch-cards by default
+                            c.style.display = 'none';
+                        }
+                    });
+                    // Show cards that should be visible on this specific image
+                    infoCards.forEach(c => {
+                        const visibleOn = c.getAttribute('data-visible-on');
+                        // Check for exact match OR if it's a front card return button and we're on any Front card image
+                        if (visibleOn === newImageSrc ||
+                            (c.getAttribute('data-location') === 'front-card1-return' && newImageSrc.startsWith('Front card'))) {
+                            c.style.display = '';
+                        }
+                    });
+                }
             }
         } else {
             // Regular popup behavior
@@ -133,3 +156,53 @@ infoCards.forEach(card => {
     });
 });
 */
+
+// ===== Touch Support for Mobile Devices =====
+
+// Detect if device supports touch
+let isTouchDevice = false;
+
+// Add touch event support
+document.addEventListener('touchstart', function() {
+    isTouchDevice = true;
+    document.body.classList.add('touch-device');
+}, { once: true });
+
+// Prevent double-tap zoom on buttons and cards
+infoCards.forEach(card => {
+    const cardHeader = card.querySelector('.card-header');
+
+    let lastTap = 0;
+    cardHeader.addEventListener('touchend', (e) => {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTap;
+
+        // Prevent double-tap zoom (if taps are within 300ms)
+        if (tapLength < 300 && tapLength > 0) {
+            e.preventDefault();
+        }
+        lastTap = currentTime;
+    });
+});
+
+// Prevent double-tap zoom on back button
+if (backButton) {
+    let lastTap = 0;
+    backButton.addEventListener('touchend', (e) => {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTap;
+
+        if (tapLength < 300 && tapLength > 0) {
+            e.preventDefault();
+        }
+        lastTap = currentTime;
+    });
+}
+
+// Improve touch scrolling for popups (if content overflows)
+document.querySelectorAll('.card-popup').forEach(popup => {
+    popup.addEventListener('touchmove', (e) => {
+        // Allow scrolling within popup
+        e.stopPropagation();
+    }, { passive: true });
+});

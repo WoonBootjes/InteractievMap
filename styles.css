@@ -152,10 +152,42 @@ body.debug .info-card::before {
 }
 
 /* Optional: Add a subtle highlight on hover to show it's clickable */
-.card-header:hover {
-    background: rgba(255, 255, 255, 0.1);
-    outline: 2px solid rgba(102, 126, 234, 0.5);
+/* Only apply hover effects on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+    .card-header:hover {
+        background: rgba(255, 255, 255, 0.1);
+        outline: 2px solid rgba(102, 126, 234, 0.5);
+        border-radius: 8px;
+    }
+
+    .back-button:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateX(0) scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-close:hover {
+        color: #667eea;
+    }
+}
+
+/* Touch device specific styles */
+body.touch-device .card-header {
+    /* Increase touch target size slightly for better usability */
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Active state for touch feedback */
+body.touch-device .card-header:active {
+    background: rgba(255, 255, 255, 0.2);
+    outline: 2px solid rgba(102, 126, 234, 0.6);
     border-radius: 8px;
+}
+
+body.touch-device .back-button:active {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(0) scale(0.95);
 }
 
 /* Hide the images and text since they're already in the background */
@@ -346,18 +378,14 @@ body.debug .info-card::before {
     user-select: none;
 }
 
-.modal-close:hover {
-    color: #667eea;
-}
-
 /* Back button styles */
 .back-button {
     position: absolute;
     top: 20px;
     left: 20px;
-    background: rgba(102, 126, 234, 0.95);
+    background: rgba(255, 255, 255, 0.1);
     color: white;
-    padding: 12px 20px;
+    padding: 12px;
     border-radius: 8px;
     cursor: pointer;
     display: flex;
@@ -365,24 +393,19 @@ body.debug .info-card::before {
     gap: 8px;
     font-size: 16px;
     font-weight: 600;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
     transform: translateX(-20px);
+    backdrop-filter: blur(5px);
 }
 
 .back-button.visible {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
-}
-
-.back-button:hover {
-    background: rgba(118, 75, 162, 0.95);
-    transform: translateX(0) scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 .back-button svg {
