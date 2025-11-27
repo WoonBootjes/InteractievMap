@@ -8,7 +8,11 @@
       "Bash(gh repo view:*)",
       "Bash(git remote add:*)",
       "Bash(git branch:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git remote remove:*)",
+      "Bash(git remote rename:*)",
+      "Bash(dir /s /-c)",
+      "Bash(findstr:*)"
     ],
     "deny": [],
     "ask": []
