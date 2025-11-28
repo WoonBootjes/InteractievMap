@@ -1,10 +1,31 @@
+// Preload all images for instant transitions
+const imagesToPreload = [
+    'Main screen front.png',
+    'Main screen back.png',
+    'Front card 1.png',
+    'Front card 2.png',
+    'Front card 3.png',
+    'Front card 4.png',
+    'Front card 5.png',
+    'Back card 1.png',
+    'Back card 2.png',
+    'Back card 3.png',
+    'Back card 4.png',
+    'Back card 5.png'
+];
+
+// Preload images immediately
+imagesToPreload.forEach(src => {
+    const img = new Image();
+    img.src = src;
+});
+
 // Get all info cards
 const infoCards = document.querySelectorAll('.info-card');
 const fullscreenModal = document.getElementById('fullscreen-modal');
 const modalImage = document.getElementById('modal-image');
 const modalClose = document.querySelector('.modal-close');
 const mainImage = document.getElementById('main-image');
-const backButton = document.getElementById('back-button');
 
 // Store the original image source
 const originalImageSrc = 'Main screen front.png';
@@ -24,34 +45,22 @@ infoCards.forEach(card => {
                 mainImage.src = newImageSrc;
                 currentImageSrc = newImageSrc;
 
-                // Check if we're returning to the main screen
-                if (newImageSrc === originalImageSrc) {
-                    // Return to main navigation - show all cards and hide back button
-                    backButton.classList.remove('visible');
-                    infoCards.forEach(c => {
+                // Hide all cards first
+                infoCards.forEach(c => {
+                    if (!c.classList.contains('image-switch-card')) {
+                        c.style.display = 'none';
+                    } else {
+                        c.style.display = 'none';
+                    }
+                });
+
+                // Show cards that should be visible on this specific image
+                infoCards.forEach(c => {
+                    const visibleOn = c.getAttribute('data-visible-on');
+                    if (visibleOn === newImageSrc) {
                         c.style.display = '';
-                    });
-                } else {
-                    // Going to a detail image - hide cards and show back button
-                    backButton.classList.add('visible');
-                    // Hide all other clickable cards when viewing detail image
-                    infoCards.forEach(c => {
-                        if (!c.classList.contains('image-switch-card')) {
-                            c.style.display = 'none';
-                        } else {
-                            // Hide image-switch-cards by default
-                            c.style.display = 'none';
-                        }
-                    });
-                    // Show cards that should be visible on this specific image
-                    infoCards.forEach(c => {
-                        const visibleOn = c.getAttribute('data-visible-on');
-                        // Check for exact match (this handles all return buttons now)
-                        if (visibleOn === newImageSrc) {
-                            c.style.display = '';
-                        }
-                    });
-                }
+                    }
+                });
             }
         } else {
             // Regular popup behavior
@@ -66,18 +75,6 @@ infoCards.forEach(card => {
                 card.classList.add('active');
             }
         }
-    });
-});
-
-// Back button functionality
-backButton.addEventListener('click', (e) => {
-    e.stopPropagation();
-    mainImage.src = originalImageSrc;
-    currentImageSrc = originalImageSrc;
-    backButton.classList.remove('visible');
-    // Show all cards again
-    infoCards.forEach(c => {
-        c.style.display = '';
     });
 });
 
@@ -115,10 +112,7 @@ document.querySelectorAll('.card-popup').forEach(popup => {
 // Optional: Add keyboard support (ESC to close)
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        // Check if we're viewing a different image and go back
-        if (backButton.classList.contains('visible')) {
-            backButton.click();
-        } else if (fullscreenModal && fullscreenModal.classList.contains('active')) {
+        if (fullscreenModal && fullscreenModal.classList.contains('active')) {
             // Close modal if it's open
             fullscreenModal.classList.remove('active');
         } else {
@@ -184,24 +178,20 @@ infoCards.forEach(card => {
     });
 });
 
-// Prevent double-tap zoom on back button
-if (backButton) {
-    let lastTap = 0;
-    backButton.addEventListener('touchend', (e) => {
-        const currentTime = new Date().getTime();
-        const tapLength = currentTime - lastTap;
-
-        if (tapLength < 300 && tapLength > 0) {
-            e.preventDefault();
-        }
-        lastTap = currentTime;
-    });
-}
-
 // Improve touch scrolling for popups (if content overflows)
 document.querySelectorAll('.card-popup').forEach(popup => {
     popup.addEventListener('touchmove', (e) => {
         // Allow scrolling within popup
         e.stopPropagation();
     }, { passive: true });
+});
+
+// Initialize: Show cards for the initial main screen
+document.addEventListener('DOMContentLoaded', () => {
+    infoCards.forEach(c => {
+        const visibleOn = c.getAttribute('data-visible-on');
+        if (visibleOn === originalImageSrc) {
+            c.style.display = '';
+        }
+    });
 });

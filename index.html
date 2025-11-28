@@ -14,55 +14,82 @@
             <div class="image-wrapper">
                 <img src="Main screen front.png" alt="Building Map" class="building-image" id="main-image">
 
-                <!-- Back/Home button (hidden by default) -->
-                <div class="back-button" id="back-button">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M19 12H5M12 19l-7-7 7-7"/>
-                    </svg>
-                </div>
+                <!-- FRONT CARDS - Only visible on Main screen front.png -->
 
-                <!-- Card 1 - Invisible clickable zone (Switches to Front card 1) -->
-            <div class="info-card image-switch-card" data-location="card1" data-switch-image="Front card 1.png" style="top: 5.5%; left: 17%; width: 11.5%; height: 29%;">
+                <!-- Card 1 - Switches to Front card 1 -->
+            <div class="info-card image-switch-card" data-location="card1" data-switch-image="Front card 1.png" data-visible-on="Main screen front.png" style="top: 5.5%; left: 17%; width: 11.5%; height: 30%; display: none;">
                 <div class="card-header"></div>
             </div>
 
-                <!-- Card 1 - Invisible clickable zone (Switches to Front card 1) -->
-                <div class="info-card image-switch-card" data-location="card2" data-switch-image="Front card 2.png" style="top: 5.5%; left: 31%; width: 11.5%; height: 29%;">
+                <!-- Card 2 - Switches to Front card 2 -->
+                <div class="info-card image-switch-card" data-location="card2" data-switch-image="Front card 2.png" data-visible-on="Main screen front.png" style="top: 5.5%; left: 31%; width: 11.5%; height: 30%; display: none;">
                     <div class="card-header"></div>
                 </div>
 
-           <!-- Card 1 - Invisible clickable zone (Switches to Front card 1) -->
-           <div class="info-card image-switch-card" data-location="card3" data-switch-image="Front card 3.png" style="top: 5.5%; left: 44%; width: 11.5%; height: 29%;">
+           <!-- Card 3 - Switches to Front card 3 -->
+           <div class="info-card image-switch-card" data-location="card3" data-switch-image="Front card 3.png" data-visible-on="Main screen front.png" style="top: 5.5%; left: 44%; width: 11.5%; height: 30%; display: none;">
             <div class="card-header"></div>
         </div>
 
-         <!-- Card 1 - Invisible clickable zone (Switches to Front card 1) -->
-                  <div class="info-card image-switch-card" data-location="card4" data-switch-image="Front card 4.png" style="top: 5.5%; left: 58%; width: 11.5%; height: 29%;">
+         <!-- Card 4 - Switches to Front card 4 -->
+                  <div class="info-card image-switch-card" data-location="card4" data-switch-image="Front card 4.png" data-visible-on="Main screen front.png" style="top: 5.5%; left: 58%; width: 11.5%; height: 30%; display: none;">
                     <div class="card-header"></div>
                 </div>
-            
-                                  <!-- Card 1 - Invisible clickable zone (Switches to Front card 1) -->
-                                  <div class="info-card image-switch-card" data-location="card5" data-switch-image="Front card 5.png" style="top: 5.5%; left: 71%; width: 11.5%; height: 29%;">
+
+                                  <!-- Card 5 - Switches to Front card 5 -->
+                                  <div class="info-card image-switch-card" data-location="card5" data-switch-image="Front card 5.png" data-visible-on="Main screen front.png" style="top: 5.5%; left: 71%; width: 11.5%; height: 30%; display: none;">
                                     <div class="card-header"></div>
                                 </div>
                         
         
 
 
-            <!-- Card 8 - Bottom clickable zone (Switches to Main screen back) -->
-            <div class="info-card image-switch-card" data-location="card8" data-switch-image="Main screen back.png" style="top: 85%; left: 48.5%; width: 3%; height: 1;">
+            <!-- Card 8 - Bottom clickable zone (Switches to Main screen back) - Only on Main screen front -->
+            <div class="info-card image-switch-card" data-location="card8" data-switch-image="Main screen back.png" data-visible-on="Main screen front.png" style="top: 85.5%; left: 48%; width: 4%; height: 8%; display: none;">
+                <div class="card-header"></div>
+            </div>
+
+            <!-- BACK CARDS - Only visible on Main screen back.png -->
+
+            <!-- Back Card 1 - Switches to Back card 1 -->
+            <div class="info-card image-switch-card" data-location="back-card1" data-switch-image="Back card 1.png" data-visible-on="Main screen back.png" style="top: 5.5%; left: 17%; width: 11.5%; height: 30%; display: none;">
+                <div class="card-header"></div>
+            </div>
+
+            <!-- Back Card 2 - Switches to Back card 2 -->
+            <div class="info-card image-switch-card" data-location="back-card2" data-switch-image="Back card 2.png" data-visible-on="Main screen back.png" style="top: 5.5%; left: 31%; width: 11.5%; height: 30%; display: none;">
+                <div class="card-header"></div>
+            </div>
+
+            <!-- Back Card 3 - Switches to Back card 3 -->
+            <div class="info-card image-switch-card" data-location="back-card3" data-switch-image="Back card 3.png" data-visible-on="Main screen back.png" style="top: 5.5%; left: 44%; width: 11.5%; height: 30%; display: none;">
+                <div class="card-header"></div>
+            </div>
+
+            <!-- Back Card 4 - Switches to Back card 4 -->
+            <div class="info-card image-switch-card" data-location="back-card4" data-switch-image="Back card 4.png" data-visible-on="Main screen back.png" style="top: 5.5%; left: 58%; width: 11.5%; height: 30%; display: none;">
+                <div class="card-header"></div>
+            </div>
+
+            <!-- Back Card 5 - Switches to Back card 5 -->
+            <div class="info-card image-switch-card" data-location="back-card5" data-switch-image="Back card 5.png" data-visible-on="Main screen back.png" style="top: 5.5%; left: 71%; width: 11.5%; height: 30%; display: none;">
+                <div class="card-header"></div>
+            </div>
+
+            <!-- Return to Front - Bottom button on Main screen back (same position as card 8) -->
+            <div class="info-card image-switch-card" data-location="back-to-front" data-switch-image="Main screen front.png" data-visible-on="Main screen back.png" style="top: 85.5%; left: 48%; width: 4%; height: 8%; display: none;">
                 <div class="card-header"></div>
             </div>
 
             <!-- Front Card Return Buttons - Each positioned for its specific image -->
 
             <!-- Front Card 1 Return -->
-            <div class="info-card image-switch-card" data-location="front-card1-return" data-switch-image="Main screen front.png" data-visible-on="Front card 1.png" style="top: 36%; left: 53%; width:2.5%; height: 7%; display: none;">
+            <div class="info-card image-switch-card" data-location="front-card1-return" data-switch-image="Main screen front.png" data-visible-on="Front card 1.png" style="top: 38%; left: 53%; width:2.5%; height: 7%; display: none;">
                 <div class="card-header"></div>
             </div>
 
             <!-- Front Card 2 Return -->
-            <div class="info-card image-switch-card" data-location="front-card2-return" data-switch-image="Main screen front.png" data-visible-on="Front card 2.png" style="top: 36%; left: 53%; width:2.5%; height: 7%; display: none;">
+            <div class="info-card image-switch-card" data-location="front-card2-return" data-switch-image="Main screen front.png" data-visible-on="Front card 2.png" style="top: 38%; left: 53%; width:2.5%; height: 7%; display: none;">
                 <div class="card-header"></div>
             </div>
 
@@ -78,6 +105,33 @@
 
             <!-- Front Card 5 Return - ADJUST POSITION HERE -->
             <div class="info-card image-switch-card" data-location="front-card5-return" data-switch-image="Main screen front.png" data-visible-on="Front card 5.png" style="top: 37%; left: 79.5%; width:2.5%; height: 7%; display: none;">
+                <div class="card-header"></div>
+            </div>
+
+            <!-- Back Card Return Buttons - Each positioned for its specific image -->
+
+            <!-- Back Card 1 Return -->
+            <div class="info-card image-switch-card" data-location="back-card1-return" data-switch-image="Main screen back.png" data-visible-on="Back card 1.png" style="top: 36%; left: 53%; width:2.5%; height: 7%; display: none;">
+                <div class="card-header"></div>
+            </div>
+
+            <!-- Back Card 2 Return -->
+            <div class="info-card image-switch-card" data-location="back-card2-return" data-switch-image="Main screen back.png" data-visible-on="Back card 2.png" style="top: 36%; left: 53%; width:2.5%; height: 7%; display: none;">
+                <div class="card-header"></div>
+            </div>
+
+            <!-- Back Card 3 Return -->
+            <div class="info-card image-switch-card" data-location="back-card3-return" data-switch-image="Main screen back.png" data-visible-on="Back card 3.png" style="top: 36%; left: 53%; width:2.5%; height: 7%; display: none;">
+                <div class="card-header"></div>
+            </div>
+
+            <!-- Back Card 4 Return - You may need to adjust position -->
+            <div class="info-card image-switch-card" data-location="back-card4-return" data-switch-image="Main screen back.png" data-visible-on="Back card 4.png" style="top: 37%; left: 79.5%; width:2.5%; height: 7%; display: none;">
+                <div class="card-header"></div>
+            </div>
+
+            <!-- Back Card 5 Return - You may need to adjust position -->
+            <div class="info-card image-switch-card" data-location="back-card5-return" data-switch-image="Main screen back.png" data-visible-on="Back card 5.png" style="top: 37%; left: 79.5%; width:2.5%; height: 7%; display: none;">
                 <div class="card-header"></div>
             </div>
 
