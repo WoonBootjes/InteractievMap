@@ -131,6 +131,12 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Remove blue focus outline on click */
+.info-card:focus,
+.card-header:focus {
+    outline: none;
+}
+
 /* Debug mode - add class "debug" to body to see clickable areas */
 body.debug .card-header {
     background: rgba(255, 0, 0, 0.3) !important;
@@ -154,11 +160,11 @@ body.debug .info-card::before {
 /* Optional: Add a subtle highlight on hover to show it's clickable */
 /* Only apply hover effects on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
-    .card-header:hover {
+    /* .card-header:hover {
         background: rgba(255, 255, 255, 0.1);
         outline: 2px solid rgba(102, 126, 234, 0.5);
         border-radius: 8px;
-    }
+    } */
 
     .back-button:hover {
         background: rgba(255, 255, 255, 0.3);
@@ -179,11 +185,11 @@ body.touch-device .card-header {
 }
 
 /* Active state for touch feedback */
-body.touch-device .card-header:active {
+/* body.touch-device .card-header:active {
     background: rgba(255, 255, 255, 0.2);
     outline: 2px solid rgba(102, 126, 234, 0.6);
     border-radius: 8px;
-}
+} */
 
 body.touch-device .back-button:active {
     background: rgba(255, 255, 255, 0.3);
@@ -236,11 +242,11 @@ body.touch-device .back-button:active {
     transform: translateX(-50%) translateY(0);
 }
 
-.info-card.active .card-header {
+/* .info-card.active .card-header {
     background: rgba(102, 126, 234, 0.2);
     outline: 2px solid rgba(102, 126, 234, 0.8);
     border-radius: 8px;
-}
+} */
 
 .popup-content {
     padding: 20px;

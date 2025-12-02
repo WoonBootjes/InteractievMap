@@ -195,3 +195,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// ===== Idle Timeout - Return to Main screen back after 4 seconds =====
+
+let idleTimer;
+const idleTimeout = 120000; // 2 minutes in milliseconds
+const resetImage = 'Main screen back.png';
+
+// Function to reset to Main screen back
+function resetToMainScreen() {
+    // Only reset if we're not already on Main screen back
+    if (currentImageSrc !== resetImage) {
+        mainImage.src = resetImage;
+        currentImageSrc = resetImage;
+
+        // Hide all cards first
+        infoCards.forEach(c => {
+            c.style.display = 'none';
+        });
+
+        // Show cards that should be visible on Main screen back
+        infoCards.forEach(c => {
+            const visibleOn = c.getAttribute('data-visible-on');
+            if (visibleOn === resetImage) {
+                c.style.display = '';
+            }
+        });
+    }
+}
+
+// Function to reset the idle timer
+function resetIdleTimer() {
+    // Clear existing timer
+    if (idleTimer) {
+        clearTimeout(idleTimer);
+    }
+
+    // Set new timer
+    idleTimer = setTimeout(resetToMainScreen, idleTimeout);
+}
+
+// Track user interactions to reset timer
+document.addEventListener('click', resetIdleTimer);
+document.addEventListener('touchstart', resetIdleTimer);
+document.addEventListener('mousemove', resetIdleTimer);
+document.addEventListener('keydown', resetIdleTimer);
+
+// Start the idle timer when page loads
+resetIdleTimer();
