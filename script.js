@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let idleTimer;
 const idleTimeout = 120000; // 2 minutes in milliseconds
-const resetImage = 'Main screen back.png';
+const resetImage = 'Main screen front.png';
 
 // Function to reset to Main screen back
 function resetToMainScreen() {
